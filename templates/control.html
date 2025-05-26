@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Control</title>
+  <link rel="stylesheet" href="/static/control.css">
+</head>
+
+<body>
+  <div class="header">Turtle Control</div>
+  <div class="topbar">
+    <form method="post" action="/set_turtle" style="margin:0;">
+      <label for="number">Select Turtle:</label>
+      <select id="number" name="number" class="turtle-select" required onchange="this.form.submit()">
+        {% for label in turtles.keys() %}
+        <option value="{{ label }}" {% if label==current_label %}selected{% endif %}>Turtle {{ label }}</option>
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+  <div class="controls-container">
+    <div class="cross-controls">
+      <div></div>
+      <button onclick="sendCommand('/move/forward')" title="Forward">&#8593;</button>
+      <div></div>
+      <button onclick="sendCommand('/turn/left')" title="Turn Left">&#8634;</button>
+      <button onclick="sendCommand('/move/up')" title="Up">&#8599;</button>
+      <button onclick="sendCommand('/turn/right')" title="Turn Right">&#8635;</button>
+      <div></div>
+      <button onclick="sendCommand('/move/backward')" title="Backward">&#8595;</button>
+      <div></div>
+    </div>
+    <div class="side-controls">
+      <button onclick="sendCommand('/move/down')" title="Down">&#8600; Down</button>
+    </div>
+    <div class="status-bar" id="command-status"></div>
+    <button class="power-btn" onclick="sendCommand('/stop')">Power off turtle</button>
+  </div>
+  <div id="world"></div>
+  <script type="module" src="/static/control.js"></script>
+</body>
+
+</html>
