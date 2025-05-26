@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #181c20;
+  color: #f0f0f0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  padding: 16px 32px 0 32px;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  z-index: 20;
+  position: relative;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 32px 0 32px;
+  z-index: 20;
+  position: relative;
+  background: rgba(24, 28, 32, 0.95);
+}
+
+.turtle-select {
+  background: #23272b;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1rem;
+}
+
+.controls-container {
+  position: absolute;
+  left: 32px;
+  top: 120px;
+  z-index: 10;
+  background: rgba(24, 28, 32, 0.85);
+  border-radius: 16px;
+  padding: 24px 32px;
+  box-shadow: 0 4px 24px #0008;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 180px;
+}
+
+.cross-controls {
+  display: grid;
+  grid-template-columns: 60px 60px 60px;
+  grid-template-rows: 60px 60px 60px;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cross-controls button {
+  background: #23272b;
+  color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #0004;
+  outline: none;
+  height: 100%;
+  width: 100%;
+}
+
+.cross-controls button:hover {
+  background: #2e3238;
+}
+
+.side-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.status-bar {
+  color: #7fff7f;
+  min-height: 24px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.power-btn {
+  background: #ff4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 8px 16px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #0004;
+}
+
+.power-btn:hover {
+  background: #ff2222;
+}
+
+#world {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
+
+@media (max-width: 700px) {
+  .controls-container {
+    left: 0;
+    top: unset;
+    bottom: 0;
+    right: 0;
+    min-width: unset;
+    width: 100vw;
+    border-radius: 0;
+    flex-direction: row;
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  .cross-controls {
+    grid-template-columns: 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px;
+  }
+}
