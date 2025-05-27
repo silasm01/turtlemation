@@ -38,13 +38,15 @@ def set_turtle():
   number = request.form.get('number')
   try:
     number_int = str(number)
-    print(f"Setting current turtle to: {number_int}")
   except (TypeError, ValueError):
     number_int = None
   if number_int in clients:
     current_turtle = clients[number_int]
     current_label = number_int
-  return redirect('/')
+    # return jsonify({'success': True, 'current_label': current_label})
+    return jsonify({'success': True, 'message': f'Turtle {number_int} set as current turtle.'}), 200
+  # return jsonify({'success': False, 'error': 'Invalid turtle label'}), 400
+  return jsonify({'success': False, 'message': 'Turtle not connected.'}), 400
   
 @app.route('/move/<direction>', methods=['POST'])
 def move(direction):
@@ -85,6 +87,7 @@ def status():
     current_turtle_entry = turtles[str(current_label)]
   return jsonify({
     "current_turtle": current_turtle_entry,
+    "turtles": turtles,
     "block_stats": block_stats
   })
 
@@ -135,7 +138,6 @@ async def ws_handler(websocket, path):
                 print("No turtles.json found, creating a new one.")
 
               label = data.get("turtle_label")
-              print(f"Received status from turtle {label}: {data}")
               if label is not None:
                 turtles[str(label)] = {
                   "x": data["turtle_position"]["x"],
@@ -186,8 +188,6 @@ async def ws_handler(websocket, path):
                 global current_turtle, current_label
                 current_label = label
                 current_turtle = websocket
-                
-                print(f"Data received from turtle {label}: {data}")
                 
                 with open("turtles.json", "r") as f:
                   turtles = json.load(f)

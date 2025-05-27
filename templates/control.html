@@ -12,7 +12,7 @@
   <div class="topbar">
     <form method="post" action="/set_turtle" style="margin:0;">
       <label for="number">Select Turtle:</label>
-      <select id="number" name="number" class="turtle-select" required onchange="this.form.submit()">
+      <select id="number" name="number" class="turtle-select" required>
         {% for label in turtles.keys() %}
         <option value="{{ label }}" {% if label==current_label %}selected{% endif %}>Turtle {{ label }}</option>
         {% endfor %}
